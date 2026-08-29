@@ -86,3 +86,5 @@ function App() {
 }
 
 export default App;
+const API_URL = "https://finguard-ai-h6d7.onrender.com/api/";
+const WS_URL = "wss://finguard-ai-h6d7.onrender.com/ws/fraud-feed/";

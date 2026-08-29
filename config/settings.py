@@ -116,3 +116,9 @@ REST_FRAMEWORK = {
 
 # Path to the trained anomaly-detection model artifacts (see ml_engine/train_model.py)
 ML_MODEL_DIR = BASE_DIR / 'ml_engine' / 'models'
+CORS_ALLOWED_ORIGINS = [
+    "https://your-frontend-name.vercel.app", # உங்கள் உண்மையான Vercel URL-ஐ இங்கே போடவும்
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://your-frontend-name.vercel.app",
+]
