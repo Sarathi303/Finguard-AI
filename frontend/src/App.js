@@ -46,3 +46,43 @@ function App() {
 }
 
 export default App;
+useEffect
+import React, { useEffect, useState } from 'react';
+
+function App() {
+  const [transactions, setTransactions] = useState([]);
+  const [metrics, setMetrics] = useState({ total: 0, flagged: 0, fraudRate: 0, avgRisk: 0 });
+
+  useEffect(() => {
+    // WebSocket URL-ஐ அமைத்தல்
+    const wsScheme = window.location.protocol === "https:" ? "wss://" : "ws://";
+    const socket = new WebSocket(wsScheme + window.location.host + "/ws/fraud-feed/");
+
+    socket.onmessage = function(event) {
+      const data = JSON.parse(event.data);
+      
+      // புதிய பரிவர்த்தனையை டேபிளில் சேர்ப்பது
+      setTransactions((prev) => [data, ...prev]);
+      
+      // கார்டு மதிப்புகளை அப்டேட் செய்வது
+      // (உங்கள் தேவைக்கேற்ப இங்கு லாஜிக் மாற்றிக்கொள்ளலாம்)
+    };
+
+    socket.onclose = function() {
+      console.error('WebSocket closed unexpectedly');
+    };
+
+    return () => {
+      socket.close();
+    };
+  }, []);
+
+  return (
+    // உங்களுடைய டஷ்போர்டு UI கோடுகள் இங்கே இருக்கும்
+    <div>
+      {/* Live Transaction Feed டேபிள் மற்றும் கார்டுகள் */}
+    </div>
+  );
+}
+
+export default App;

@@ -9,3 +9,4 @@ numpy
 daphne
 channels
 channels-redis
+channels
